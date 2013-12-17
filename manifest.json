@@ -1,0 +1,20 @@
+{
+  "manifest_version": 2,
+
+  "name": "TaoCoin",
+  "description": "Get Taobao coin automaticly",
+  "version": "1.0",
+
+  "permissions": [
+    "https://*.taobao.com/"
+  ],
+  "browser_action": {
+    "default_icon": "icon16.png",
+    "default_title": "TaoCoin",
+    "default_popup": "popup.html"
+  },
+  "icons": { 
+    "16": "icon16.png",
+    "48": "icon48.png"
+  }
+}
