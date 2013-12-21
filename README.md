@@ -1,4 +1,5 @@
 TaoCoin
 =======
 
-Get taobao coin automaticly
+Collect taobao coin automaticly
+自动获取淘金币
