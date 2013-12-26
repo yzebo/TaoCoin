@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>TaoCoin Options</title>
+		<link href="css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+		<script type="text/javascript" src="javascripts/jquery-2.0.3.min.js"></script>
+		<script type="text/javascript" src="javascripts/bootstrap.min.js"></script>
+		<script type="text/javascript" src="javascripts/popup.js"></script>
+	</head>
+<body>
+<div class="container" style="width:256px;padding-top:16px;padding-bottom:16px;">
+	<form role="form">
+	<div id="setuser" class="form-group" style="display:block;">
+		<div class="input-group">
+			<span class="input-group-addon glyphicon glyphicon-user"></span>
+			<input type="text" class="form-control" id="username" placeholder="淘宝账号" maxlength="32">
+		</div>
+		<div class="input-group">
+			<span class="input-group-addon glyphicon glyphicon-lock"></span>
+			<input type="password" class="form-control" id="password" placeholder="密码" maxlength="20">
+		</div>
+	</div>
+	<div id="getuser" class="form-group" style="display:none;">
+		<div style="margin-bottom:8px;">
+			<strong>当前账号：</strong>
+			<span class="label label-default" id="cur_user" ></span>
+			<span>&nbsp;</span>
+			<button type="button" class="btn btn-danger btn-xs" id="change" >更改</button>
+		</div>
+	</div>
+	<div class="form-group">
+		<div> 
+			<input type="checkbox" name="phone" id="phone" ><label for="phone">包含手机淘宝的金币</label>
+		</div>
+		<div> 
+			<input type="checkbox" name="inform" id="inform" /><label for="inform">弹出通知</label>
+		</div>
+		<div> 
+			<input type="checkbox" name="quit" id="quit" /><label for="quit">自动退出淘宝账户</label>
+		</div>
+	</div>
+	<button type="button" class="btn btn-success" id="save" rel="popover" data-placement="top" data-content="保存成功" >
+		<span class="glyphicon glyphicon-ok" ></span> 保存
+	</button>
+	<button type="button" class="btn btn-info" id="options" >选项</button>
+	<button type="button" class="btn btn-danger" id="cancel" >
+		<span class="glyphicon glyphicon-remove"></span> 取消
+	</button>
+	</form>
+	<a href="https://login.taobao.com" target="_blank">登录淘宝</a>
+</body>
+</html>
