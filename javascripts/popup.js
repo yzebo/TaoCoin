@@ -10,9 +10,6 @@ function showUser(status) {
 }
 
 function bindAction() {
-    $('#options').on('click',function(){
-        chrome.tabs.create({url:chrome.extension.getURL("options.html"),selected:true});
-    });
     $('#change').on('click',function(){
         showUser("#setuser");
     });
@@ -77,15 +74,6 @@ function check() {
         }
     }
     return true;
-}
-
-function notify(msg) {
-    chrome.notifications.create("", {
-                type: "basic",
-                title: "TaoCoin",
-                message: msg+"淘金币领取失败，请检查用户名密码！",
-                iconUrl: "icon128.png"
-    }, function(){});
 }
 
 function EnStr(text){
