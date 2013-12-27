@@ -1,3 +1,4 @@
+//get parameters from url
 var para = (function(a) {
     if (a == "") return {};
     var b = {};
@@ -14,10 +15,11 @@ if(para.from){
     window.addEventListener('load', function(){
         setTimeout(function(){
             window.close();
-        }, 10000);
+        }, 15000);
         var codeFlag=false;
-        var codebox=document.getElementsByName("checkCode")[0];
+        var codebox;
         var timer = setInterval(function(){
+            codebox=document.getElementsByName("checkCode")[0];
             if(!codeFlag && codebox){
                 chrome.runtime.sendMessage({
                     action: "coinCode",
@@ -29,9 +31,21 @@ if(para.from){
             if(document.querySelector('.coin-overlay-btn')){
                 clearInterval(timer);
                 chrome.runtime.sendMessage({
-                    action: "success",
+                    action: "success"
                 });
-                window.close();
+                //logoff and quit
+                chrome.runtime.sendMessage({
+                    action: "getValue"
+                }, function(response) {
+                    if(response.quit=="true"){
+                        var evt = document.createEvent("MouseEvents");
+                        evt.initEvent("click", true, true);
+                        document.querySelectorAll('.user-operate a')[1].dispatchEvent(evt);
+                    }
+                });
+                chrome.runtime.sendMessage({
+                    action: "closetab"
+                });
             }
         }, 100);
     });

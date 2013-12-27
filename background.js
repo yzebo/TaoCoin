@@ -4,7 +4,8 @@ chrome.runtime.onMessage.addListener(
         case 'getValue':
             sendResponse({
                 'user': localStorage.getItem('user'),
-                'pwd': DeStr(localStorage.getItem('pwd'))
+                'pwd': DeStr(localStorage.getItem('pwd')),
+                'quit': localStorage.getItem('quit')
             });
             break;
         case 'loginCode':
@@ -20,6 +21,9 @@ chrome.runtime.onMessage.addListener(
         case 'success':
             notify('TaoCoin','今日网页淘金币领取成功！');
             finish();
+            break;
+        case 'closetab':
+            chrome.tabs.remove(sender.tab.id, function (){});
             break;
         }
     }
@@ -42,7 +46,7 @@ function createTimer() {
             clearInterval(myTimer);
             GetCoin();
         }
-    }, 30000);
+    }, 3000);
 }
 createTimer();
 
@@ -63,10 +67,12 @@ function DeStr(text) {
 }
 
 function notify(title,msg) {
-    chrome.notifications.create("", {
-                type: "basic",
-                title: title,
-                message: msg,
-                iconUrl: "icons/128.png"
-    }, function(){});
+    if(localStorage['inform']=='true'){
+        chrome.notifications.create("", {
+                    type: "basic",
+                    title: title,
+                    message: msg,
+                    iconUrl: "icons/128.png"
+        }, function(){});
+    }
 }
