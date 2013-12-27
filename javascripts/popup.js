@@ -50,8 +50,12 @@ function restoreOptions() {
 
 function saveOptions() {
     if(check()){
-        localStorage['user'] = $('#username').val();
-        localStorage['pwd'] = EnStr($('#password').val());
+        if($('#username').val()){
+            localStorage['user'] = $('#username').val();
+        }
+        if($('#password').val()){
+            localStorage['pwd'] = EnStr($('#password').val());
+        }
         localStorage['phone'] = $('#phone').is(":checked");
         localStorage['inform'] = $('#inform').is(":checked");
         localStorage['quit'] = $('#quit').is(":checked");
