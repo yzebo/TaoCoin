@@ -7,8 +7,12 @@ chrome.runtime.onMessage.addListener(
                 'pwd': DeStr(localStorage.getItem('pwd'))
             });
             break;
-        case 'checkCode':
-            notify('登录淘宝失败','请在网页输入验证码！');
+        case 'loginCode':
+            notify('TaoCoin','自动登录淘宝失败，请在网页输入验证码！');
+            break;
+        case 'coinCode':
+            notify('TaoCoin','自动领取金币失败，请在网页输入验证码！');
+            sendResponse({});
             break;
         case 'success':
             notify('TaoCoin','今日网页淘金币领取成功！');
@@ -39,6 +43,6 @@ function notify(title,msg) {
                 type: "basic",
                 title: title,
                 message: msg,
-                iconUrl: "icon128.png"
+                iconUrl: "icons/128.png"
     }, function(){});
 }

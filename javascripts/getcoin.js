@@ -15,7 +15,15 @@ if(para.from){
         setTimeout(function(){
             window.close();
         }, 10000);
+        var codeFlag=false;
         var timer = setInterval(function(){
+            if(!codeFlag && document.getElementsByName("checkCode")[0]){
+                chrome.runtime.sendMessage({
+                    action: "coinCode",
+                }, function(res){
+                    codeFlag=true;
+                });
+            }
             if(document.querySelector('.coin-overlay-btn')){
                 clearInterval(timer);
                 chrome.runtime.sendMessage({
