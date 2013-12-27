@@ -16,13 +16,15 @@ if(para.from){
             window.close();
         }, 10000);
         var codeFlag=false;
+        var codebox=document.getElementsByName("checkCode")[0];
         var timer = setInterval(function(){
-            if(!codeFlag && document.getElementsByName("checkCode")[0]){
+            if(!codeFlag && codebox){
                 chrome.runtime.sendMessage({
                     action: "coinCode",
-                }, function(res){
+                }, function(){
                     codeFlag=true;
                 });
+                codebox.focus();
             }
             if(document.querySelector('.coin-overlay-btn')){
                 clearInterval(timer);
@@ -31,6 +33,6 @@ if(para.from){
                 });
                 window.close();
             }
-        }, 1);
+        }, 100);
     });
 }
