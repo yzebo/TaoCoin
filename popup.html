@@ -9,7 +9,7 @@
 		<script type="text/javascript" src="javascripts/popup.js"></script>
 	</head>
 <body>
-<div class="container" style="width:256px;padding-top:16px;padding-bottom:16px;">
+<div class="container" style="width:240px;padding-top:16px;padding-bottom:16px;">
 	<form role="form">
 	<div id="setuser" class="form-group" style="display:block;">
 		<div class="input-group">
@@ -28,6 +28,12 @@
 			<span>&nbsp;</span>
 			<button type="button" class="btn btn-danger btn-xs" id="change" >更改</button>
 		</div>
+		<div>
+			<h3 style="text-align: center;">
+			<img src="icons/coin.png" style="width:24px; height=24px">
+			<span id="coins" style="color:#F40;"></span></br>
+			<small>已领<span id="days" style="color:#FC4400;"></span>天，明天可领<span id="num" style="color:#FC4400;"></span></small></h3>
+		</div>
 	</div>
 	<div class="form-group">
 		<div> 
@@ -37,16 +43,23 @@
 			<input type="checkbox" name="inform" id="inform" /><label for="inform">弹出通知</label>
 		</div>
 		<div> 
-			<input type="checkbox" name="quit" id="quit" /><label for="quit">自动退出淘宝账户</label>
+			<input type="checkbox" name="quit" id="quit" /><label for="quit">领取金币后退出登录</label>
 		</div>
 	</div>
-	<button type="button" class="btn btn-success" id="save" rel="popover" data-placement="top" data-content="保存成功" >
-		<span class="glyphicon glyphicon-ok" ></span> 保存
-	</button>
-	<button type="button" class="btn btn-danger" id="cancel" >
-		<span class="glyphicon glyphicon-remove"></span> 取消
-	</button>
+	<div class="row">
+		<div class="col-xs-6">
+			<button type="button" class="btn btn-success" id="save" rel="popover" data-placement="top" data-content="保存成功" >
+				<span class="glyphicon glyphicon-ok" ></span> 保存
+			</button>
+		</div>
+		<div class="col-xs-6">
+			<button type="button" class="btn btn-danger" id="cancel" >
+				<span class="glyphicon glyphicon-remove"></span> 取消
+			</button>
+		</div>
+	</div>
+
+
 	</form>
-	<a href="https://login.taobao.com" target="_blank">登录淘宝</a>
 </body>
 </html>

@@ -17,8 +17,7 @@ function bindAction() {
         saveOptions();
     });
     $('#cancel').on('click',function(){
-        //window.close();
-        notify('yzebo');
+        window.close();
     });
     $('#save').on('shown.bs.popover', function () {
         if(check()){
@@ -31,6 +30,9 @@ function restoreOptions() {
     if (localStorage['user']) {
         $('#cur_user').text(localStorage['user']);
         $('#username').val(localStorage['user']);
+        $('#coins').text(localStorage['coins'] || 0);
+        $('#days').text(localStorage['days'] || 0);
+        $('#num').text(localStorage['num'] || 0);
         showUser("#getuser");
     }
     else {
@@ -51,6 +53,11 @@ function restoreOptions() {
 function saveOptions() {
     if(check()){
         if($('#username').val()){
+            if(localStorage['user'] != $('#username').val()){
+                localStorage['coins']=0;
+                localStorage['days']=0;
+                localStorage['num']=0;
+            }
             localStorage['user'] = $('#username').val();
         }
         if($('#password').val()){

@@ -20,7 +20,7 @@ chrome.runtime.onMessage.addListener(
             break;
         case 'success':
             notify('TaoCoin','今日网页淘金币领取成功！');
-            finish();
+            finish(request);
             break;
         case 'closetab':
             chrome.tabs.remove(sender.tab.id, function (){});
@@ -50,8 +50,11 @@ function createTimer() {
 }
 createTimer();
 
-function finish() {
+function finish(data) {
     localStorage['lastday']=today;
+    localStorage['coins']=data.coins;
+    localStorage['days']=data.days;
+    localStorage['num']=data.num;
     getting=false;
     createTimer();
 }
