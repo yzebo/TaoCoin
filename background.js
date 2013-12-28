@@ -27,10 +27,11 @@ chrome.runtime.onMessage.addListener(
             break;
         }
     }
-);
-function GetCoin(){
+)
+
+function Login(url){
     chrome.tabs.create({
-        url: "https://login.taobao.com/member/login.jhtml?from=taocoin&redirect_url="+encodeURIComponent("http://vip.taobao.com/vip_home.htm?auto_take=true&from=taocoin"),
+        url: "https://login.taobao.com/member/login.jhtml?from=taocoin&redirect_url="+encodeURIComponent(url),
         active: true
     });
 }
@@ -44,7 +45,7 @@ function createTimer() {
         if(today!=lastday && !getting && localStorage['user']){
             getting=true;
             clearInterval(myTimer);
-            GetCoin();
+            Login("http://vip.taobao.com/vip_home.htm?auto_take=true&from=taocoin"); //get coin
         }
     }, 3000);
 }

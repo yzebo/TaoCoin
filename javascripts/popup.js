@@ -19,6 +19,10 @@ function bindAction() {
     $('#cancel').on('click',function(){
         window.close();
     });
+    $('#home').on('click',function(){
+        chrome.extension.getBackgroundPage().Login("http://www.taobao.com");
+        return false;
+    });
     $('#save').on('shown.bs.popover', function () {
         if(check()){
             setTimeout(function(){$('.popover').hide();},1200);
