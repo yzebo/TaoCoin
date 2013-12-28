@@ -25,6 +25,9 @@ chrome.runtime.onMessage.addListener(
         case 'closetab':
             chrome.tabs.remove(sender.tab.id, function (){});
             break;
+        case 'closetab':
+            chrome.tabs.remove(sender.tab.id, function (){});
+            break;
         }
     }
 )

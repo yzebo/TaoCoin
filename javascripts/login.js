@@ -43,6 +43,5 @@ if(para.from){
 			codebox.focus();
 		}
 
-	}
-	);
+	});
 }

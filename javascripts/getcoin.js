@@ -31,10 +31,14 @@ if(para.from){
             if(document.querySelector('.coin-overlay-btn')){
                 clearInterval(timer);
                 chrome.runtime.sendMessage({
+<<<<<<< HEAD
                     action: "success",
                     coins: document.querySelector('.user-coin a').innerHTML || 0,
                     days: document.querySelectorAll('.coin-day em')[0].innerHTML || 0,
                     num: document.querySelectorAll('.coin-day em')[1].innerHTML || 0
+=======
+                    action: "success"
+>>>>>>> d7cf2e3b0348e59488fd5a69ef1ba8b9378011f0
                 });
                 //logoff and quit
                 chrome.runtime.sendMessage({
