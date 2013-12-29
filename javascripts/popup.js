@@ -52,6 +52,9 @@ function restoreOptions() {
     if (localStorage['quit'] == 'true') {
         $('#quit').prop('checked','checked');
     }
+    if (localStorage['etao'] == 'true') {
+        $('#etao').prop('checked','checked');
+    }
 }
 
 function saveOptions() {
@@ -70,6 +73,7 @@ function saveOptions() {
         localStorage['phone'] = $('#phone').is(":checked");
         localStorage['inform'] = $('#inform').is(":checked");
         localStorage['quit'] = $('#quit').is(":checked");
+        localStorage['etao'] = $('#etao').is(":checked");
         restoreOptions();
         $('#save').popover('show');
         $('#save').popover('hide');

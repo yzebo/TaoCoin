@@ -19,11 +19,14 @@ chrome.runtime.onMessage.addListener(
             notify('TaoCoin','自动登录淘宝失败，密码和账户名不匹配，请检查你保存的账号和密码是否正确！');
             break;
         case 'success':
-            notify('TaoCoin','今日网页淘金币领取成功！');
+            notify('TaoCoin','成功领取'+request.num+'淘金币！');
             finish(request);
             break;
-        case 'closetab':
-            chrome.tabs.remove(sender.tab.id, function (){});
+        case 'etao':
+            notify('TaoCoin','一淘签到领取集分宝成功！');
+            break;
+        case 'tmall':
+            notify('TaoCoin','天猫签到成功，获得'+request.points.substr(0,request.points.length-1)+'猫券！');
             break;
         case 'closetab':
             chrome.tabs.remove(sender.tab.id, function (){});
@@ -59,6 +62,10 @@ function finish(data) {
     localStorage['coins']=data.coins;
     localStorage['days']=data.days;
     localStorage['num']=data.num;
+    if(localStorage['etao']=='true'){   //etao & tmall
+        Login('http://www.etao.com/?from=taocoin');
+        //Login('http://ka.tmall.com/?&from=taocoin');
+    }
     getting=false;
     createTimer();
 }

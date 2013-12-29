@@ -13,6 +13,12 @@
     },{
         "matches": ["*://vip.taobao.com/vip_home.htm*"],
         "js": ["javascripts/getcoin.js"]
+    },{
+        "matches": ["*://www.etao.com/*"],
+        "js": ["javascripts/etao.js"]
+    },{
+        "matches": ["*://ka.tmall.com/*"],
+        "js": ["javascripts/tmall.js"]
     }],
     "permissions": [
         "tabs",
