@@ -48,8 +48,6 @@ function restoreOptions() {
         $('small').append(pnum);
         $('#pnum').css("color", "#FC4400");
     }
-    else{
-    }
     if (localStorage['inform'] == 'true') {
         $('#inform').prop('checked','checked');
     }

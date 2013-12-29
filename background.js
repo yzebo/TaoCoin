@@ -19,12 +19,12 @@ chrome.runtime.onMessage.addListener(
             notify('TaoCoin','自动登录淘宝失败，密码和账户名不匹配，请检查你保存的账号和密码是否正确！');
             break;
         case 'success':
-            notify('TaoCoin','成功领取'+request.num+'淘金币！');
+            notify('TaoCoin','成功领取'+request.num+'网页淘金币！');
             finish(request);
             break;
         case 'etao':
             notify('TaoCoin','一淘签到领取集分宝成功！');
-            Login('http://ka.tmall.com/?&from=taocoin');    //tmall signin
+            Login('http://ka.tmall.com/?from=taocoin');    //tmall signin
             break;
         case 'tmall':
             notify('TaoCoin','天猫签到成功，获得'+request.points.substr(0,request.points.length-1)+'猫券！');
@@ -63,6 +63,27 @@ function finish(data) {
     localStorage['coins']=data.coins;
     localStorage['days']=data.days;
     localStorage['num']=data.num;
+    if(localStorage['phone']=='true'){
+        var xmlhttp=new XMLHttpRequest();
+        xmlhttp.onreadystatechange=function()
+        {
+            if (xmlhttp.readyState==4 && xmlhttp.status==200)
+            {
+                var data=eval('(' + xmlhttp.responseText + ')');
+                console.log(data.data.receiveCoin);
+                if(data.data.isSign=='0'){
+                    notify('TaoCoin','成功领取'+data.data.receiveCoin+'手机客户端淘金币！');
+                    localStorage['coins']=data.data.totalCoin;
+                }
+                else{
+                    notify('TaoCoin','手机客户端今天已经领取过淘金币了！');
+                    localStorage['coins']=data.data.totalCoin;
+                }
+            }
+        }
+        xmlhttp.open("GET","http://api.m.taobao.com/rest/api3.do?sign=f52c451c47d4d00f1d4fc478cdd1125c&ttid=700171%40taobao_android_3.9.5&v=1.0&t=1388293552&imei=867763013440834&data=%7B%22sid%22%3A%228rvpr119rs8fsjgwd3di5qa42oz1cc8d%22%7D&api=mtop.matrixexchange.wireless.shakeCoin.receive&imsi=460023175032645&deviceId=AndSV4DgaO0vQY_9WSmkfBuGL5fsI7FZ6KszbZUtPXXp&appKey=21646297",true);
+        xmlhttp.send();
+    }
     if(localStorage['etao']=='true'){   //etao signin
         Login('http://www.etao.com/?from=taocoin');
     }

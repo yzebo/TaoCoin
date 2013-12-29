@@ -12,36 +12,37 @@ var para = (function(a) {
 })(window.location.search.substr(1).split('&'));
 
 if(para.from){
-	var userbox=document.querySelector('#TPL_username_1');
-	var pwdbox=document.querySelector('#TPL_password_1') || document.querySelector('#J_PwdV');;
-	var submitbtn=document.querySelector('#J_SubmitStatic') || document.querySelector('#J_VerifySubmit');
-	var issafe=document.getElementById('J_SafeLoginCheck');
-	var checkcode=document.getElementsByName("need_check_code")[0];
-	var codebox=document.querySelector('#J_CodeInput_i');
-	var errorname=document.querySelector('.error a');
+    window.addEventListener('load', function(){
+        var userbox=document.querySelector('#TPL_username_1');
+        var pwdbox=document.querySelector('#TPL_password_1') || document.querySelector('#J_PwdV');;
+        var submitbtn=document.querySelector('#J_SubmitStatic') || document.querySelector('#J_VerifySubmit');
+        var issafe=document.getElementById('J_SafeLoginCheck');
+        var checkcode=document.getElementsByName("need_check_code")[0];
+        var codebox=document.querySelector('#J_CodeInput_i');
+        var errorname=document.querySelector('.error a');
 
-	if(issafe && issafe.checked){
-		issafe.checked=false;		//not use safe login control
-	}
-	chrome.runtime.sendMessage({
-	    action: "getValue"
-	}, function(response) {
-		userbox.value=response.user;
-		pwdbox.value=response.pwd;
-		/*if(errorname){
-			chrome.runtime.sendMessage({
-	    		action: "errorName"
-			});
-		}*/
-		if(checkcode.value!='yes'){
-			submitbtn.click();		
-		}
-		else{
-			chrome.runtime.sendMessage({
-	    		action: "loginCode"
-			});
-			codebox.focus();
-		}
-
-	});
+        if(issafe && issafe.checked){
+            issafe.checked=false;       //not use safe login control
+        }
+        chrome.runtime.sendMessage({
+            action: "getValue"
+        }, function(response) {
+            userbox.value=response.user;
+            pwdbox.value=response.pwd;
+            /*if(errorname){
+                chrome.runtime.sendMessage({
+                    action: "errorName"
+                });
+            }*/
+            if(checkcode.value!='yes'){
+                submitbtn.click();
+            }
+            else{
+                chrome.runtime.sendMessage({
+                    action: "loginCode"
+                });
+                codebox.focus();
+            }
+        });
+    });
 }
