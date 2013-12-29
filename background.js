@@ -24,6 +24,7 @@ chrome.runtime.onMessage.addListener(
             break;
         case 'etao':
             notify('TaoCoin','一淘签到领取集分宝成功！');
+            Login('http://ka.tmall.com/?&from=taocoin');    //tmall signin
             break;
         case 'tmall':
             notify('TaoCoin','天猫签到成功，获得'+request.points.substr(0,request.points.length-1)+'猫券！');
@@ -62,9 +63,8 @@ function finish(data) {
     localStorage['coins']=data.coins;
     localStorage['days']=data.days;
     localStorage['num']=data.num;
-    if(localStorage['etao']=='true'){   //etao & tmall
+    if(localStorage['etao']=='true'){   //etao signin
         Login('http://www.etao.com/?from=taocoin');
-        //Login('http://ka.tmall.com/?&from=taocoin');
     }
     getting=false;
     createTimer();

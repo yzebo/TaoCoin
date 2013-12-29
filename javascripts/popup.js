@@ -45,6 +45,15 @@ function restoreOptions() {
     $('#password').val("");
     if (localStorage['phone'] == 'true') {
         $('#phone').prop('checked','checked');
+        $('small').append('<span>+</span>');
+        var pnum=document.createElement("a");
+        pnum.appendChild(document.createTextNode(localStorage['num'] || 0));
+        pnum.title="手机客户端淘金币";
+        pnum.id="pnum";
+        $('small').append(pnum);
+        $('#pnum').css("color", "#FC4400");
+    }
+    else{
     }
     if (localStorage['inform'] == 'true') {
         $('#inform').prop('checked','checked');
@@ -74,10 +83,9 @@ function saveOptions() {
         localStorage['inform'] = $('#inform').is(":checked");
         localStorage['quit'] = $('#quit').is(":checked");
         localStorage['etao'] = $('#etao').is(":checked");
-        restoreOptions();
+        location.reload();
         $('#save').popover('show');
         $('#save').popover('hide');
-        console.log('show');
     }
 }
 
