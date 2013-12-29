@@ -23,11 +23,6 @@ function bindAction() {
         chrome.extension.getBackgroundPage().Login("http://www.taobao.com");
         return false;
     });
-    $('#save').on('shown.bs.popover', function () {
-        if(check()){
-            setTimeout(function(){$('.popover').hide();},1200);
-        }
-    });
 }
 
 function restoreOptions() {
@@ -84,8 +79,6 @@ function saveOptions() {
         localStorage['quit'] = $('#quit').is(":checked");
         localStorage['etao'] = $('#etao').is(":checked");
         location.reload();
-        $('#save').popover('show');
-        $('#save').popover('hide');
     }
 }
 
