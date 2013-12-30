@@ -15,19 +15,15 @@ chrome.runtime.onMessage.addListener(
             notify('TaoCoin','请在领金币页面输入验证码！');
             sendResponse({});
             break;
-        case 'errorName':
-            notify('TaoCoin','自动登录淘宝失败，密码和账户名不匹配，请检查你保存的账号和密码是否正确！');
-            break;
         case 'success':
             notify('TaoCoin','成功领取'+request.num+'网页淘金币！');
             finish(request);
             break;
-        case 'etao':
-            notify('TaoCoin','一淘签到领取集分宝成功！');
-            Login('http://ka.tmall.com/?from=taocoin');    //tmall signin
+        case 'notify':
+            notify(request.title, request.msg);
             break;
-        case 'tmall':
-            notify('TaoCoin','天猫签到成功，获得'+request.points.substr(0,request.points.length-1)+'猫券！');
+        case 'login':
+            Login(request.url);
             break;
         case 'closetab':
             chrome.tabs.remove(sender.tab.id, function (){});
@@ -69,14 +65,14 @@ function finish(data) {
         {
             if (xmlhttp.readyState==4 && xmlhttp.status==200)
             {
-                var data=eval('(' + xmlhttp.responseText + ')');
+                var data=JSON.parse(xmlhttp.responseText);
                 console.log(data.data.receiveCoin);
-                if(data.data.isSign=='0'){
+                if(data.data.receiveCoin && data.data.receiveCoin!='0'){
                     notify('TaoCoin','成功领取'+data.data.receiveCoin+'手机客户端淘金币！');
                     localStorage['coins']=data.data.totalCoin;
                 }
                 else{
-                    notify('TaoCoin','手机客户端今天已经领取过淘金币了！');
+                    notify('TaoCoin','手机客户端领取淘金币失败！');
                     localStorage['coins']=data.data.totalCoin;
                 }
             }

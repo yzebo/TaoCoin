@@ -17,15 +17,23 @@ if(para.from){
             //window.close();
         }, 15000);
         if(document.querySelector('.right_button')){
-        	var evt = document.createEvent("MouseEvents");
+            var evt = document.createEvent("MouseEvents");
             evt.initEvent("click", true, true);
             document.querySelector('.right_button').dispatchEvent(evt);
-            if(document.querySelector('.dq_count')){
-	            chrome.runtime.sendMessage({
-	                action: "tmall",
-	                points: document.querySelector('.dq_count').innerHTML
-	            });
-	        }
+            if(document.querySelector(".dq_count").innerHTML!=""){
+                chrome.runtime.sendMessage({
+                    action: "notify",
+                    title: 'TaoCoin',
+                    msg: '天猫签到成功，获得'+document.querySelector('.dq_count').innerHTML.substr(0,request.points.length-1)+'猫券！'
+                });
+            }
+            else{
+                chrome.runtime.sendMessage({
+                    action: "notify",
+                    title: 'TaoCoin',
+                    msg: '天猫签到失败，今天已经领过猫券了！'
+                });
+            }
             //logoff and quit
             chrome.runtime.sendMessage({
                 action: "getValue"
