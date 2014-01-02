@@ -57,6 +57,7 @@ createTimer();
 function finish(data) {
     localStorage['lastday']=today;
     localStorage['coins']=data.coins;
+    console.log(data.coins);
     localStorage['days']=data.days;
     localStorage['num']=data.num;
     if(localStorage['phone']=='true'){
@@ -73,7 +74,6 @@ function finish(data) {
                 }
                 else{
                     notify('TaoCoin','手机客户端领取淘金币失败！');
-                    localStorage['coins']=data.data.totalCoin;
                 }
             }
         }
